@@ -5,11 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "pwa-chrome",
-            "request": "launch",
             "name": "Chrome",
+            "request": "launch",
+            "type": "pwa-chrome",
             "url": "http://localhost:3000",
-            "webRoot": "${workspaceFolder}/src/index.js"
+            "webRoot": "${workspaceFolder}/src/index.js",
+            // "runtimeExecutable": "${workspaceFolder}/src/index.js",
         }
     ]
 }

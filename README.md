@@ -3,6 +3,14 @@ react 16.10.0 源码阅读。
 
 
 ## create-react-app
+
+基于npm在全局安装create-react-app
+```
+npm install -g create-react-app
+create-react-app my-app-name
+yarn start
+
+```
 在本地通过create-react-app创建测试项目  
 创建完项目之后要修改源码以及webopack配置,需要 执行： 
 npm run eject  
@@ -138,5 +146,11 @@ yarn start
 启动调试，就可以愉快的打断点调试啦
 
 
+### QA
+VSCODE 调试启动有问题 
 
+Unable to launch browser: "spawn ENOTDIR"
+
+1. 降低插件版本，debugger for chrome。
+2. 安装插件 view in browser
 
