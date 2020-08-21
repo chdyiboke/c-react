@@ -140,7 +140,7 @@ yarn start
 // 配置调试- 安装插件 debugger for chrome
 // 和上面启动的端口保持一致
     "url": "http://localhost:3000",
-    "webRoot": "${workspaceFolder}/src/index.js"
+    "webRoot": "${workspaceFolder}"
 
 ```
 启动调试，就可以愉快的打断点调试啦
@@ -151,6 +151,9 @@ VSCODE 调试启动有问题
 
 Unable to launch browser: "spawn ENOTDIR"
 
-1. 降低插件版本，debugger for chrome。
-2. 安装插件 view in browser
+```
+"webRoot": "${workspaceFolder}"
+```
+路径 智能识别。
+${workspaceFolder}/src/index.js
 

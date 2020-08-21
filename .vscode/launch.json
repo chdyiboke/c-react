@@ -9,7 +9,7 @@
             "request": "launch",
             "name": "react-localhost",
             "url": "http://localhost:3000",
-            "webRoot": "${workspaceFolder}/src/index.js"
+            "webRoot": "${workspaceFolder}"
         }
     ]
 }
