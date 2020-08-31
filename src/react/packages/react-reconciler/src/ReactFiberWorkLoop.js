@@ -382,26 +382,36 @@ export function computeUniqueAsyncExpiration(): ExpirationTime {
   return result;
 }
 
+/**
+ * 开始进行任务调度
+ * c-react 2020-8-27
+ * @param {*} fiber
+ * @param {*} expirationTime
+ */
+
 export function scheduleUpdateOnFiber(
   fiber: Fiber,
   expirationTime: ExpirationTime,
 ) {
+  // 检查最大update的数量是否超过了最大值
   checkForNestedUpdates();
   warnAboutInvalidUpdatesOnClassComponentsInDEV(fiber);
 
+  // 找到rootFiber并遍历更新子节点的expirationTime
   const root = markUpdateTimeFromFiberToRoot(fiber, expirationTime);
   if (root === null) {
     warnAboutUpdateOnUnmountedFiberInDEV(fiber);
     return;
   }
-
+  // 查看当前是否能被打断
   checkForInterruption(fiber, expirationTime);
   recordScheduleUpdate();
 
   // TODO: computeExpirationForFiber also reads the priority. Pass the
   // priority as an argument to that function and this one.
+  // 获取当前优先级
   const priorityLevel = getCurrentPriorityLevel();
-
+  // 如果expirationTime 等于 1073741823（最大整型值）的话 当前是同步更新的 
   if (expirationTime === Sync) {
     if (
       // Check if we're inside unbatchedUpdates
@@ -417,6 +427,7 @@ export function scheduleUpdateOnFiber(
       // should be deferred until the end of the batch.
       performSyncWorkOnRoot(root);
     } else {
+      // 进入render阶段
       ensureRootIsScheduled(root);
       schedulePendingInteractions(root, expirationTime);
       if (executionContext === NoContext) {
