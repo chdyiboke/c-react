@@ -121,6 +121,13 @@ describe('ReactCompositeComponent-state', () => {
     };
   });
 
+  it("ReactDOM.renders test by caiyi", () => {
+    const container = document.createElement('div');
+    document.body.appendChild(container);
+    
+    ReactDOM.render(<div />, container);
+  });
+
   it('should support setting state', () => {
     const container = document.createElement('div');
     document.body.appendChild(container);
