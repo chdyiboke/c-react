@@ -61,6 +61,8 @@ function defineKeyPropWarningGetter(props, displayName) {
     }
   };
   warnAboutAccessingKey.isReactWarning = true;
+  // Object.defineProperty() 方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。
+  // warnAboutAccessingKey 如果读取就会报warn
   Object.defineProperty(props, 'key', {
     get: warnAboutAccessingKey,
     configurable: true,
@@ -111,7 +113,7 @@ function defineRefPropWarningGetter(props, displayName) {
 const ReactElement = function(type, key, ref, self, source, owner, props) {
   const element = {
     // This tag allows us to uniquely identify this as a React Element
-    $$typeof: REACT_ELEMENT_TYPE,
+    $$typeof: REACT_ELEMENT_TYPE, // 用于表示是 React 元素
 
     // Built-in properties that belong on the element
     type: type,
@@ -120,7 +122,7 @@ const ReactElement = function(type, key, ref, self, source, owner, props) {
     props: props,
 
     // Record the component responsible for creating this element.
-    _owner: owner,
+    _owner: owner, // 创建该元素的组件，默认为 null,
   };
 
   if (__DEV__) {
@@ -321,6 +323,7 @@ export function createElement(type, config, children) {
   let source = null;
 
   if (config != null) {
+    // 将 config 中的 ref、key、__self、__source, 分别赋值给对应的变量
     if (hasValidRef(config)) {
       ref = config.ref;
     }
@@ -330,7 +333,7 @@ export function createElement(type, config, children) {
 
     self = config.__self === undefined ? null : config.__self;
     source = config.__source === undefined ? null : config.__source;
-    // Remaining properties are added to a new props object
+    // 除上述 4 个变量外，config 中的其他值都赋值给 props
     for (propName in config) {
       if (
         hasOwnProperty.call(config, propName) &&
@@ -341,12 +344,12 @@ export function createElement(type, config, children) {
     }
   }
 
-  // Children can be more than one argument, and those are transferred onto
-  // the newly allocated props object.
+  // 处理子节点
   const childrenLength = arguments.length - 2;
   if (childrenLength === 1) {
     props.children = children;
   } else if (childrenLength > 1) {
+    // 多个子节点
     const childArray = Array(childrenLength);
     for (let i = 0; i < childrenLength; i++) {
       childArray[i] = arguments[i + 2];
@@ -505,6 +508,7 @@ export function cloneElement(element, config, children) {
  * @final
  */
 export function isValidElement(object) {
+  // 判断元素是否是一个合法的ReactElement，核心也是通过判断?typeof。
   return (
     typeof object === 'object' &&
     object !== null &&

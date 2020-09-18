@@ -738,6 +738,7 @@ function completeWork(
             }
           }
         } else {
+          //  创建并返回DOM元素
           let instance = createInstance(
             type,
             newProps,
@@ -745,7 +746,7 @@ function completeWork(
             currentHostContext,
             workInProgress,
           );
-
+          //  将此DOM节点添加进父节点
           appendAllChildren(instance, workInProgress, false, false);
 
           // This needs to be set before we mount Flare event listeners
