@@ -1,61 +1,61 @@
-// {
-//     // 使用 IntelliSense 了解相关属性。 
-//     // 悬停以查看现有属性的描述。
-//     // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
-//     "version": "0.2.0",
-//     "configurations": [
-//         {
-//             "type": "chrome",
-//             "request": "launch",
-//             "name": "react-localhost",
-//             "url": "http://localhost:3000",
-//             "webRoot": "${workspaceFolder}"
-//         }
-//     ]
-// }
 {
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
-        "type": "node",
-        "request": "launch",
-        "name": "Jest All",
-        "program": "${workspaceFolder}/node_modules/.bin/jest",
-        "args": [
-            "--config",
-            "./src/react/scripts/jest/config.source.js",
-            "--runInBand"
-        ],
-        "console": "integratedTerminal",
-        "internalConsoleOptions": "neverOpen",
-        "disableOptimisticBPs": true,
-        "windows": {
-            "program": "${workspaceFolder}/node_modules/jest/bin/jest",
-        },
-        "env": {
-            "NODE_ENV": "development"
-        }
-        },
-        {
-        "type": "node",
-        "request": "launch",
-        "name": "Jest Current File",
-        "program": "${workspaceFolder}/node_modules/.bin/jest",
-        "args": [
-            "${fileBasenameNoExtension}",
-            "--config",
-            "./src/react/scripts/jest/config.source.js",
-            "--runInBand"
-        ],
-        "console": "integratedTerminal",
-        "internalConsoleOptions": "neverOpen",
-        "disableOptimisticBPs": true,
-        "env": {
-            "NODE_ENV": "development"
-        },
-        "windows": {
-            "program": "${workspaceFolder}/node_modules/jest/bin/jest",
-        }
+            "type": "chrome",
+            "request": "launch",
+            "name": "react-localhost",
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceFolder}"
         }
     ]
 }
+// {
+//     "version": "0.2.0",
+//     "configurations": [
+//         {
+//         "type": "node",
+//         "request": "launch",
+//         "name": "Jest All",
+//         "program": "${workspaceFolder}/node_modules/.bin/jest",
+//         "args": [
+//             "--config",
+//             "./src/react/scripts/jest/config.source.js",
+//             "--runInBand"
+//         ],
+//         "console": "integratedTerminal",
+//         "internalConsoleOptions": "neverOpen",
+//         "disableOptimisticBPs": true,
+//         "windows": {
+//             "program": "${workspaceFolder}/node_modules/jest/bin/jest",
+//         },
+//         "env": {
+//             "NODE_ENV": "development"
+//         }
+//         },
+//         {
+//         "type": "node",
+//         "request": "launch",
+//         "name": "Jest Current File",
+//         "program": "${workspaceFolder}/node_modules/.bin/jest",
+//         "args": [
+//             "${fileBasenameNoExtension}",
+//             "--config",
+//             "./src/react/scripts/jest/config.source.js",
+//             "--runInBand"
+//         ],
+//         "console": "integratedTerminal",
+//         "internalConsoleOptions": "neverOpen",
+//         "disableOptimisticBPs": true,
+//         "env": {
+//             "NODE_ENV": "development"
+//         },
+//         "windows": {
+//             "program": "${workspaceFolder}/node_modules/jest/bin/jest",
+//         }
+//         }
+//     ]
+// }

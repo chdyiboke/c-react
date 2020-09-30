@@ -431,7 +431,7 @@ function getStateFromUpdate<State>(
   }
   return prevState;
 }
-
+// ??fiber????updateQueue
 export function processUpdateQueue<State>(
   workInProgress: Fiber,
   queue: UpdateQueue<State>,
@@ -440,7 +440,7 @@ export function processUpdateQueue<State>(
   renderExpirationTime: ExpirationTime,
 ): void {
   hasForceUpdate = false;
-
+// ??workInProgress?current???????????current
   queue = ensureWorkInProgressQueueIsAClone(workInProgress, queue);
 
   if (__DEV__) {
@@ -452,7 +452,7 @@ export function processUpdateQueue<State>(
   let newFirstUpdate = null;
   let newExpirationTime = NoWork;
 
-  // Iterate through the list of updates to compute the result.
+  // ???????????updateQueue
   let update = queue.firstUpdate;
   let resultState = newBaseState;
   while (update !== null) {
@@ -481,9 +481,10 @@ export function processUpdateQueue<State>(
       // TODO: We should skip this update if it was already committed but currently
       // we have no way of detecting the difference between a committed and suspended
       // update here.
+      // ???????????
       markRenderEventTimeAndConfig(updateExpirationTime, update.suspenseConfig);
 
-      // Process it and compute a new result.
+      // ?? update ?????????? ?????state
       resultState = getStateFromUpdate(
         workInProgress,
         queue,
@@ -492,6 +493,8 @@ export function processUpdateQueue<State>(
         props,
         instance,
       );
+      // ? callback ?? null ??? setState ????????? callback ????????????“??”
+      // ??????this.setState({xx:yy},()=>{})?????()=>{}
       const callback = update.callback;
       if (callback !== null) {
         workInProgress.effectTag |= Callback;

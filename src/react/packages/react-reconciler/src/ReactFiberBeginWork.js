@@ -916,6 +916,7 @@ function updateHostRoot(current, workInProgress, renderExpirationTime) {
   const nextProps = workInProgress.pendingProps;
   const prevState = workInProgress.memoizedState;
   const prevChildren = prevState !== null ? prevState.element : null;
+  // ??fiber????updateQueue ???? App ??
   processUpdateQueue(
     workInProgress,
     updateQueue,
