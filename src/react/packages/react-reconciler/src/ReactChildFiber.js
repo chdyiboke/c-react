@@ -1128,7 +1128,7 @@ function ChildReconciler(shouldTrackSideEffects) {
     created.return = returnFiber;
     return created;
   }
-
+  // diff??????diff??
   function reconcileSingleElement(
     returnFiber: Fiber,
     currentFirstChild: Fiber | null,
@@ -1137,9 +1137,11 @@ function ChildReconciler(shouldTrackSideEffects) {
   ): Fiber {
     const key = element.key;
     let child = currentFirstChild;
+    // ??????????DOM??
     while (child !== null) {
       // TODO: If key === null and child.key === null, then this only applies to
       // the first item in the list.
+      // ???????DOM?????????????
       if (child.key === key) {
         if (
           child.tag === Fragment
@@ -1166,6 +1168,8 @@ function ChildReconciler(shouldTrackSideEffects) {
           }
           return existing;
         } else {
+          //  key???type??????????????
+          // ??????????????
           deleteRemainingChildren(returnFiber, child);
           break;
         }
