@@ -251,7 +251,7 @@ const classComponentUpdater = {
     scheduleWork(fiber, expirationTime);
   },
 };
-
+// 用于判断组件是否需要更新。
 function checkShouldComponentUpdate(
   workInProgress,
   ctor,
@@ -776,7 +776,7 @@ function callComponentWillReceiveProps(
   }
 }
 
-// Invokes the mount life-cycles on a previously never rendered instance.
+// mountClassInstance 主要用来调用生命周期函数
 function mountClassInstance(
   workInProgress: Fiber,
   ctor: any,
@@ -884,6 +884,7 @@ function mountClassInstance(
   }
 }
 
+// 复用ClassComponent实例，更新props和state，调用生命周期API
 function resumeMountClassInstance(
   workInProgress: Fiber,
   ctor: any,
@@ -1028,6 +1029,8 @@ function resumeMountClassInstance(
   return shouldUpdate;
 }
 
+// 当已经创建实例并且不是第一次渲染的话，调用更新的生命周期API
+// 和resumeMountClassInstance逻辑类似
 // Invokes the update life-cycles and returns false if it shouldn't rerender.
 function updateClassInstance(
   current: Fiber,

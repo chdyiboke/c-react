@@ -857,11 +857,9 @@ function finishClassComponent(
 
   // React DevTools reads this flag.
   workInProgress.effectTag |= PerformedWork;
+  // ?????????error????forceUnmountCurrentAndReconcile()???????children?
+  // ?????reconcileChildren()
   if (current !== null && didCaptureError) {
-    // If we're recovering from an error, reconcile without reusing any of
-    // the existing children. Conceptually, the normal children and the children
-    // that are shown on error are two different sets, so we shouldn't reuse
-    // normal children even if their identities match.
     forceUnmountCurrentAndReconcile(
       current,
       workInProgress,
@@ -869,6 +867,7 @@ function finishClassComponent(
       renderExpirationTime,
     );
   } else {
+    // ? ReactElement ??fiber??????????? DOM ??????????? DOM ???
     reconcileChildren(
       current,
       workInProgress,
@@ -885,7 +884,7 @@ function finishClassComponent(
   if (hasContext) {
     invalidateContextProvider(workInProgress, Component, true);
   }
-
+  // ????? render ???????workInProgress.child
   return workInProgress.child;
 }
 
@@ -980,11 +979,11 @@ function updateHostRoot(current, workInProgress, renderExpirationTime) {
 
 function updateHostComponent(current, workInProgress, renderExpirationTime) {
   pushHostContext(workInProgress);
-
+  // ??????? hydrate ??????????????root????DOM???
   if (current === null) {
     tryToClaimNextHydratableInstance(workInProgress);
   }
-
+  // ???? <div>???
   const type = workInProgress.type;
   const nextProps = workInProgress.pendingProps;
   const prevProps = current !== null ? current.memoizedProps : null;

@@ -1919,10 +1919,7 @@ function commitRootImpl(root, renderPriorityLevel) {
     stopCommitHostEffectsTimer();
     resetAfterCommit(root.containerInfo);
 
-    // The work-in-progress tree is now the current tree. This must come after
-    // the mutation phase, so that the previous tree is still current during
-    // componentWillUnmount, but before the layout phase, so that the finished
-    // work is current during componentDidMount/Update.
+    // 重要：在 DomElement 副作用处理完毕之后，意味着之前讲的缓冲树已经完成任务，翻身当主人，成为下次修改过程的current
     root.current = finishedWork;
 
     // The next phase is the layout phase, where we call effects that read
