@@ -1554,6 +1554,7 @@ function performUnitOfWork(unitOfWork: Fiber): Fiber | null {
   return next;
 }
 
+// 树的深度优先搜索算法 在 completeUnitOfWork 方法中构建 effect-list 链表，该 effect list 在下一个 commit 阶段非常重要
 function completeUnitOfWork(unitOfWork: Fiber): Fiber | null {
   // Attempt to complete the current unit of work, then move to the next
   // sibling. If there are no more siblings, return to the parent fiber.
