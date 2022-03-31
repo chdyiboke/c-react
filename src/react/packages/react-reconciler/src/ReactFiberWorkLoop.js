@@ -1862,6 +1862,7 @@ function commitRootImpl(root, renderPriorityLevel) {
     startCommitSnapshotEffectsTimer();
     prepareForCommit(root.containerInfo);
     nextEffect = firstEffect;
+    // 【第一阶段】before mutation 对于 Class 组件而言，是执行 getSnapShotBeforeUpdate 生命周期，对于函数式组件则是安排异步回调 
     do {
       if (__DEV__) {
         invokeGuardedCallback(null, commitBeforeMutationEffects, null);
@@ -1892,6 +1893,7 @@ function commitRootImpl(root, renderPriorityLevel) {
     // The next phase is the mutation phase, where we mutate the host tree.
     startCommitHostEffectsTimer();
     nextEffect = firstEffect;
+    // 【第二阶段】before mutation React 会挂载或更新 DOM，并清理上一轮的 useLayoutEffect
     do {
       if (__DEV__) {
         invokeGuardedCallback(
@@ -1928,6 +1930,7 @@ function commitRootImpl(root, renderPriorityLevel) {
     // layout, but class component lifecycles also fire here for legacy reasons.
     startCommitLifeCyclesTimer();
     nextEffect = firstEffect;
+    // 【第三阶段】layout 对于 Class 组件而言是执行 componentDidMount，对于函数式组件则是执行 useLayoutEffect 
     do {
       if (__DEV__) {
         invokeGuardedCallback(
